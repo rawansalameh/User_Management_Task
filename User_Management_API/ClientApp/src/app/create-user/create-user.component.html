@@ -1,0 +1,181 @@
+
+<h2 mat-dialog-title>Create User</h2>
+<mat-dialog-content class="mat-typography">
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Name</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <input [(ngModel)]="Name" class="form-control"  />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Birthdate</label>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="form-group">
+            <input type="date"  [(ngModel)]="Birthdate" class="form-control" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Phone Number</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <input  [(ngModel)]="PhoneNumber" class="form-control" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Email</label>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="form-group">
+            <input  [(ngModel)]="Email" class="form-control"  />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Username</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <input [(ngModel)]="Username" class="form-control"  />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Password</label>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="form-group">
+            <input [(ngModel)]="Password" class="form-control"  />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">User Type</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+
+            <select [(ngModel)]="UsertType" class="form-control" >
+              <option value="1" selected>User</option>
+              <option value="2">Admin</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Company</label>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="form-group">
+
+            <!--<select ngModel="" #company class="form-control">
+    <option *ngFor="let company of companies" [value]="company.company.companyId">{{company.company.name}}</option>
+  </select>-->
+           
+              <div class="form-group">
+                <ng-container *ngIf="systemUser ; then admin ; else eska ">
+                </ng-container>
+                <ng-template #admin>
+                  <input class="form-control" [(ngModel)]="companyName"  disabled />
+                </ng-template>
+                <ng-template #eska>
+                  <select  name="companySelect" class="form-control" [(ngModel)]="companyID" (change)="onCodeChange($event)">
+                    <option *ngFor="let company of companies" [value]="company.company.companyId">{{company.company.name}}</option>
+                  </select>
+                </ng-template>
+              </div>
+            
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">User Groups</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <!--change this to checkboxes-->
+            <select ngModel multiple  class="form-control" [(ngModel)]="groupIDs" name="groups">
+              <option *ngFor="let group of groups" [value]="group.groupId">{{group.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button class="btn-primary" [mat-dialog-close]="true"
+             (click)="CreateUser()" cdkFocusInitial>Create</button>
+</mat-dialog-actions>
+
+
+

@@ -1,0 +1,45 @@
+<br />
+<h2 style="margin-left:120px">Users VS Groups</h2>
+<hr />
+<div style="margin-left:100px">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group">
+          <label class="control-label" style="font-size:larger">Company</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <select ngModel #company class="form-control" (change)="onCodeChange($event)" [(ngModel)]="companyID">
+            <!--<option value="0" selected>--Choose Company--</option>-->
+            <option *ngFor="let company of companies" [value]="company.company.companyId">{{company.company.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-3" *ngFor="let groupUsers of groupsUsers" style="    margin: 10px;
+    border-color: cornflowerblue;
+    border-width: 2px;
+    border-radius: 5px;
+    border-style: solid;
+    background-color: #F7F9F9">
+        <h4 class="mx-2 mt-2"> {{groupUsers.groupName}}</h4>
+
+        <table>
+
+          <tr *ngFor="let userName of groupUsers.usersNames">
+            <td class=" mx-5 mt-3"> {{userName}}</td>
+          </tr>
+
+        </table>
+      </div>
+
+
+    </div>
+  </div>
+
+  </div>

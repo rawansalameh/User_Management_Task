@@ -1,0 +1,74 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button class="btn" (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1 class="example-app-name">User Management</h1>
+    <a *ngIf="userData.isLoggedIn" (click)=logout() [routerLink]='["/"]' style="margin-left:1100px; font-size:medium; color:white">Logout</a>
+
+    <!-------REPLACE THIS ------->
+    <!--<a href="/login.component.html" id="logout" style="margin-left:1100px; font-size:medium; color:white">Logout</a>-->
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+
+      <!-------REPLACE THIS ------->
+      <mat-nav-list style="width:200px">
+        <a mat-list-item class="nav-link text-dark" *ngIf="userData.isLoggedIn" [routerLink]='["Profile"]' [routerLink]=''>Profile</a>
+
+        <a mat-list-item class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.role==userRole.eskaUser" [routerLink]='["Companies"]' [routerLink]=''>Companies</a>
+
+
+        <a mat-list-item class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.role==userRole.eskaUser" [routerLink]='["Groups"]' [routerLink]=''>Groups</a>
+
+        <a mat-list-item class="nav-link text-dark" *ngIf="userData.isLoggedIn && (userData.role==userRole.eskaUser||userData.role==userRole.adminUser)" [routerLink]='["Users"]' [routerLink]=''>Users</a>
+
+        <a mat-list-item class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.role==userRole.eskaUser" [routerLink]='["Report"]' [routerLink]=''>Report</a>
+
+        <!--<a mat-list-item *ngFor="let item of menuItems" [routerLink]='item'>{{item}}</a>-->
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+
+<!-------REPLACE IT WITH THIS------->
+<!--<li class="nav-item" [routerLinkActive]='["link-active"]'>
+  <a class="nav-link text-dark" *ngIf="!userData.isLoggedIn" [routerLink]='["/Login"]'>Login</a>
+</li>
+
+<li class="nav-item" [routerLinkActive]='["link-active"]'>
+  <a class="nav-link text-dark" *ngIf="userData.isLoggedIn  && (userData.role==userRole.adminUser ||userData.role==userRole.normalUser)" [routerLink]='["/Profile"]' [routerLink]=''>Profile</a>
+</li>
+
+<li class="nav-item" [routerLinkActive]='["link-active"]'>
+  <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.role==userRole.eskaUser" [routerLink]='["/Companies"]' [routerLink]=''>Companies</a>
+</li>
+
+<li class="nav-item" [routerLinkActive]='["link-active"]'>
+  <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.role==userRole.eskaUser" [routerLink]='["/Groups"]' [routerLink]=''>Groups</a>
+</li>
+
+<li class="nav-item" [routerLinkActive]='["link-active"]'>
+  <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && (userData.role==userRole.eskaUser||userData.role==userRole.adminUser)" [routerLink]='["/Users"]' [routerLink]=''>Users</a>
+</li>
+
+<li class="nav-item" [routerLinkActive]='["link-active"]'>
+  <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.role==userRole.eskaUser" [routerLink]='["/Report"]' [routerLink]=''>Report</a>
+</li>-->
+
+<!-------REPLACE IT WITH THIS------->
+<!--<li class="nav-item" [routerLinkActive]='["link-active"]'>
+  <a class="nav-link text-dark" *ngIf="userData.isLoggedIn" (click)=logout() [routerLink]=''>Logout</a>
+</li>
+<li class="nav-item" [routerLinkActive]='["link-active"]' *ngIf="userData.isLoggedIn">
+  <a class="nav-link text-dark">Welcome <b>{{userData.name}}</b> </a>
+</li>-->
+
+

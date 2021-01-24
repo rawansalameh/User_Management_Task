@@ -1,0 +1,54 @@
+
+
+<div class="col-md-6 offset-md-3 mt-5">
+  <div *ngIf="loginForm.errors?.invalidLogin" class="alert alert-danger mt-3 mb-0">
+    Username or Password is incorrect.  <!--error message here should come from api (service response)-->
+  </div>
+  <div *ngIf="loginForm.errors?.ExpierdLogin" class="alert alert-danger mt-3 mb-0">
+    Your Password has expired, Change Password
+  </div>
+  <div *ngIf="loginForm.errors?.ActiveLogin" class="alert alert-danger mt-3 mb-0">
+    You are not allowed to Login (Deactivated User)
+  </div>
+
+  <div class="card">
+    <h5 class="card-header">User Management System</h5>
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" formControlName="username" class="form-control" tabindex="1" autofocus
+                 [ngClass]="{ 'is-invalid': submitted && loginFormControl.username.errors }" />
+          <div *ngIf="submitted && loginFormControl.username.errors" class="invalid-feedback">
+            <div *ngIf="loginFormControl.username.errors.required">Username is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" formControlName="password" class="form-control" tabindex="2"
+                 [ngClass]="{ 'is-invalid': submitted && loginFormControl.password.errors }" />
+          <div *ngIf="submitted && loginFormControl.password.errors" class="invalid-feedback">
+            <div *ngIf="loginFormControl.password.errors.required">Password is required</div>
+          </div>
+        </div>
+
+        <button [disabled]="loading" class="btn btn-primary">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Login
+        </button>
+        <div>
+          <a [routerLink]='["change-password"]'>Change Password</a>
+        </div>
+        <div>
+          <a [routerLink]='["forget-password"]'>Forgot Password?</a>
+        </div>
+      </form>
+  </div>
+  </div>
+</div>
+
+
+
+

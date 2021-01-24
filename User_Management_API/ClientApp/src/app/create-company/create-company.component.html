@@ -1,0 +1,25 @@
+
+<h2 mat-dialog-title>Create Company</h2>
+<mat-dialog-content class="mat-typography">
+
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group">
+        <label class="control-label"> Company Name </label>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <input #name id="companyName" class="form-control" />
+      </div>
+    </div>
+  </div>
+  <!--<form ngForm="form">
+  </form>-->
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button  class="btn-primary" [mat-dialog-close]="true"
+        (click)=" CreateCompany(name.value)"  cdkFocusInitial>Create</button>
+</mat-dialog-actions>

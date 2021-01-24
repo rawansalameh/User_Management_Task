@@ -1,0 +1,60 @@
+<br />
+<h2 style="margin-left:120px">Companies</h2>
+<hr/>
+<div style="margin-left:100px">
+  <mat-form-field style="width:75%">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="e.g Eska" #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8" style="width:75%">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- name Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let Company"> {{Company.company.name}} </td>
+      </ng-container>
+
+      <!-- Groups Column -->
+      <ng-container matColumnDef="Groups">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Groups (count) </th>
+        <td mat-cell *matCellDef="let Company"> {{Company.groupsCount}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Employees">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Employees (count) </th>
+        <td mat-cell *matCellDef="let Company"> {{Company.usersCount}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Edit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+        <td mat-cell *matCellDef="let Company">
+          <button mat-button class="btn-primary" (click)="openEditDialog(Company.company.companyId)">Edit</button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Delete">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+        <td mat-cell *matCellDef="let Company">
+          <button mat-button class="btn-primary"  (click)="openDeleteDialog(Company.company.companyId)">Delete</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+  <br />
+  <div class="form-group" style="margin-left:35px">
+    <button mat-button class="btn-primary" (click)="openCreateDialog()">Add Company</button>
+  </div>
+</div>

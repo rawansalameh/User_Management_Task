@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Delete Group</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>Are you sure you want to delete this?</h3>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button  mat-raised-button color="warn" class="btn-primary"  [mat-dialog-close]="true"
+       (click)="DeleteGroup(data)"   cdkFocusInitial>Delete</button>
+</mat-dialog-actions>

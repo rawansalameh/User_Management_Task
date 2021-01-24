@@ -1,0 +1,135 @@
+
+<h2 mat-dialog-title>Edit User</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Name</label>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="form-group">
+            <input  class="form-control" [(ngModel)]="data.user.name"  />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Email</label>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="data.user.email" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Phone Number</label>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="data.user.phoneNumber" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">User Type</label>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="form-group">
+            <ng-container *ngIf="data.user.isAdmin ; then admin; else user">
+            </ng-container>
+            <ng-template #admin>
+              <input class="form-control" value="Admin" disabled />
+            </ng-template>
+            <ng-template #user>
+              <input class="form-control" value="User" disabled />
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      </div>
+      <!--<div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Company</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <input class="form-control"  [value]="data.user" disabled />
+          </div>
+        </div>
+      </div>
+    </div>-->
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">User Groups</label>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="form-group">
+              <select ngModel multiple class="form-control" [(ngModel)]="groupIDs" name="groups">
+                <option *ngFor="let group of groups" [value]="group.groupId">{{group.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">User Status</label>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="form-group">
+              <select class="form-control" name="status" [(ngModel)]="data.user.userStatus">
+                <option [value]="1">Active</option>
+                <option [value]="0">Inctive</option>
+              </select>
+
+           
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+
+      </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button class="btn-primary" [mat-dialog-close]="true"
+     (click)="EditUser(data)" cdkFocusInitial>Edit</button>
+</mat-dialog-actions>

@@ -1,0 +1,79 @@
+<br />
+<h2 id="userType" style="margin-left:120px">User Info</h2>
+<hr>
+<div style="margin-left:100px">
+  <br />
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <label class="control-label"> Name  </label>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <input name="Name" [value]="Name" class="form-control" disabled />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <label class="control-label"> Email  </label>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <input name="Email" [value]="Email" class="form-control" disabled />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <label class="control-label"> Phone Number  </label>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <input name="PhoneNumber" [value]="PhoneNumber" class="form-control" disabled />
+      </div>
+    </div>
+  </div>
+
+ 
+    
+    <ng-container *ngIf="systemUser ; then companyGroups">
+    </ng-container>
+    <ng-template #companyGroups>
+
+      <div class="row">
+        <div class="col-md-2">
+          <div class="form-group">
+            <label class="control-label"> Company  </label>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="companyName" disabled />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <div class="form-group">
+            <label class="control-label"> Groups </label>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <select ngModel multiple class="form-control" disabled>
+              <option *ngFor="let group of groups" [value]="group" disabled>{{group}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+    </ng-template>
+  </div>

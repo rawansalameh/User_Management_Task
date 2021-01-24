@@ -1,0 +1,38 @@
+
+<h2 mat-dialog-title>Create Group</h2>
+<mat-dialog-content class="mat-typography">
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group">
+        <label class="control-label">Group Name</label>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="form-group">
+        <input ngModel #groupName  class="form-control" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group">
+        <label class="control-label">Company</label>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="form-group">
+        <select ngModel #company class="form-control">
+          <option *ngFor="let company of companies" [value]="company.company.companyId">{{company.company.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button class="btn-primary" [mat-dialog-close]="true"
+         (click)="CreateGroup({ name:groupName.value , companyId:company.value })" cdkFocusInitial>Create</button>
+</mat-dialog-actions>
